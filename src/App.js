@@ -8,32 +8,22 @@ import {
   Code,
   Grid,
   theme,
+  Button
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBoard, addCard, addColumn, deleteBoard, deleteCard, deleteColumn } from './slices';
+import NavBar from './components/Nav';
+import CreateBoardModal from './components/CreateBoardModal';
 
 function App() {
+  const state = useSelector((state) => state.trello)
+  const dispatch = useDispatch()
+
   return (
     <ChakraProvider theme={theme}>
+      <NavBar/>
       <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
       </Box>
     </ChakraProvider>
   );
